@@ -14,9 +14,9 @@ spring:
     properties:
       hibernate:
         jdbc:
-          batch_size: 100
-        order_inserts: true
-        order_updates: true
+          "batch_size": 100
+        "order_inserts": true
+        "order_updates": true
   jackson:
     default-property-inclusion: non_null
 

@@ -16,5 +16,7 @@ RUN mvn -B package -DskipTests
 FROM eclipse-temurin:17-jre
 WORKDIR /app
 COPY --from=backend-build /workspace/backend/target/salary-management-api-0.0.1-SNAPSHOT.jar app.jar
+RUN useradd --system --uid 10001 appuser
+USER appuser
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
