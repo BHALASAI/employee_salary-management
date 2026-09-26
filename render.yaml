@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: acme-salary-management
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: JWT_SECRET
+        sync: false
+      - key: CORS_ORIGINS
+        value: https://acme-salary-management.onrender.com
+      - key: DB_PATH
+        value: /tmp/salary.db

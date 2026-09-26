@@ -13,6 +13,8 @@ import java.util.Optional;
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     boolean existsByEmployeeId(String employeeId);
 
+    boolean existsByEmail(String email);
+
     Optional<Employee> findByEmployeeId(String employeeId);
 
     @Query("""

@@ -31,6 +31,9 @@ public class EmployeeService {
         if (employeeRepository.existsByEmployeeId(request.employeeId())) {
             throw new DuplicateResourceException("Employee ID already exists");
         }
+        if (employeeRepository.existsByEmail(request.email())) {
+            throw new DuplicateResourceException("Email already exists");
+        }
         return EmployeeResponse.from(employeeRepository.save(toEntity(request)));
     }
 
@@ -40,6 +43,10 @@ public class EmployeeService {
         if (!employee.getEmployeeId().equals(request.employeeId())
                 && employeeRepository.existsByEmployeeId(request.employeeId())) {
             throw new DuplicateResourceException("Employee ID already exists");
+        }
+        if (!employee.getEmail().equalsIgnoreCase(request.email())
+                && employeeRepository.existsByEmail(request.email())) {
+            throw new DuplicateResourceException("Email already exists");
         }
         employee.update(request.employeeId(), request.firstName(), request.lastName(), request.email(),
                 request.department(), request.jobTitle(), request.country(), request.currency(),
