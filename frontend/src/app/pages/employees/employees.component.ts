@@ -44,8 +44,8 @@ import { EmployeeService } from '../../core/employee.service';
     .table-header span { color: var(--muted); font-size: 12px; margin-top: 4px; }
     .table-wrap { overflow-x: auto; }
     table { width: 100%; border-collapse: collapse; min-width: 960px; }
-    th { color: var(--muted); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; text-align: left; font-weight: 700; padding: 15px 16px; background: #fafbf9; }
-    td { padding: 15px 16px; border-top: 1px solid var(--line); color: #3f4d4d; font-size: 12px; vertical-align: middle; }
+    th { color: var(--muted); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; text-align: left; font-weight: 700; padding: 15px 24px; background: #fafbf9; }
+    td { padding: 15px 24px; border-top: 1px solid var(--line); color: #3f4d4d; font-size: 12px; vertical-align: middle; }
     tbody tr:hover { background: #fcf7f1; }
     td strong, td span { display: block; }
     td strong { color: var(--ink); font-size: 12px; }
@@ -64,7 +64,7 @@ import { EmployeeService } from '../../core/employee.service';
     .empty-state strong { font-size: 15px; }
     .empty-state span { color: var(--muted); }
     mat-paginator { border-top: 1px solid var(--line); }
-    @media (max-width: 650px) { .page-content { padding: 38px 18px 60px; } .page-heading { align-items: flex-start; flex-direction: column; } .page-heading a { width: 100%; } .filter-bar { padding: 16px 16px 3px; } mat-form-field, .search-field { width: 100%; flex-basis: 100%; } .filter-button { flex: 1; } }
+    @media (max-width: 650px) { .page-content { padding: 38px 18px 60px; } .page-heading { align-items: flex-start; flex-direction: column; } .page-heading a { width: 100%; } .filter-bar { padding: 16px 16px 3px; } mat-form-field, .search-field { width: 100%; flex-basis: 100%; } .filter-button, .clear-button { flex: 0 0 calc(50% - 5px); width: calc(50% - 5px); min-width: 0; } }
   `]
 })
 export class EmployeesComponent implements OnInit {
