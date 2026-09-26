@@ -47,7 +47,7 @@ import { EmployeeService } from '../../core/employee.service';
     th { color: var(--muted); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; text-align: left; font-weight: 700; padding: 15px 24px; background: #fafbf9; }
     td { padding: 15px 24px; border-top: 1px solid var(--line); color: #3f4d4d; font-size: 12px; vertical-align: middle; }
     tbody tr:hover { background: #fcf7f1; }
-    td strong, td span { display: block; }
+    td strong, td span:not(.avatar) { display: block; }
     td strong { color: var(--ink); font-size: 12px; }
     .person-cell { display: flex; align-items: center; gap: 11px; min-width: 235px; }
     .person-cell span:not(.avatar), .cell-subtext { color: var(--muted); font-size: 11px; margin-top: 5px; }
