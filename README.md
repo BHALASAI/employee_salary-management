@@ -63,3 +63,4 @@ The free service uses SQLite at `/tmp/salary.db`, which is suitable for evaluati
 - [AI-assisted development notes](docs/ai-prompts.md)
 - [Performance considerations](docs/performance.md)
 - [Demo runbook](docs/demo.md)
+- [Render deployment runbook](docs/render-deployment.md)
