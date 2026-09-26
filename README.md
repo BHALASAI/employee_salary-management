@@ -4,7 +4,7 @@ A full-stack assessment solution for an HR manager maintaining salary data for 1
 
 ## What is included
 
-- Angular 17 + Angular Material responsive HR portal.
+- Angular 18 + Angular Material responsive HR portal.
 - Spring Boot 3.3 REST API with SQLite, JPA, validation, JWT authentication, and role-based authorization.
 - Deterministic seed runner for 10,000 employees and three demo roles.
 - Search, filters, server-side pagination, create/edit/delete workflows, dashboard metrics, and currency-separated payroll views.
@@ -23,11 +23,11 @@ Demo credentials are intentionally simple and must not be used in production.
 
 ## Local development
 
-Prerequisites: Java 17+, Maven 3.9+, Node.js 18.13+, and npm 9+.
+Prerequisites: Java 17+, Gradle 8.10+, Node.js 18.13+, and npm 9+.
 
 ```powershell
 cd backend
-mvn spring-boot:run
+gradle bootRun
 ```
 
 In another terminal:
@@ -38,13 +38,13 @@ npm install
 npm start
 ```
 
-Open `http://localhost:4200`. The first backend start creates `backend/data/salary.db` and seeds 10,000 employees.
+Open `http://localhost:4200`. The first backend start creates `backend/salary.db` and seeds 10,000 employees.
 
 Run tests:
 
 ```powershell
 cd backend
-mvn test
+gradle test
 cd ../frontend
 npm test
 ```

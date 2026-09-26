@@ -2,9 +2,9 @@
 
 @include mat.core();
 
-$acme-teal: mat.define-palette((50: #e7f2ef, 100: #c3dfd9, 200: #9dcac2, 300: #74b4a9, 400: #53a295, 500: #147d7b, 600: #11736f, 700: #0d6664, 800: #095652, 900: #06433f, contrast: (50: #18232b, 100: #18232b, 200: #18232b, 300: #18232b, 400: #fff, 500: #fff, 600: #fff, 700: #fff, 800: #fff, 900: #fff)));
-$acme-coral: mat.define-palette((50: #fff0ec, 100: #f9d6ca, 200: #f5bbaa, 300: #ef9279, 400: #e97c60, 500: #e86a4a, 600: #d95b41, 700: #c64f38, 800: #ad4332, 900: #91382c, contrast: (50: #18232b, 100: #18232b, 200: #18232b, 300: #18232b, 400: #18232b, 500: #18232b, 600: #fff, 700: #fff, 800: #fff, 900: #fff)));
-$acme-theme: mat.define-light-theme((color: (primary: $acme-teal, accent: $acme-coral), typography: mat.define-typography-config($font-family: 'DM Sans, sans-serif')));
+$acme-teal: mat.m2-define-palette((50: #e7f2ef, 100: #c3dfd9, 200: #9dcac2, 300: #74b4a9, 400: #53a295, 500: #147d7b, 600: #11736f, 700: #0d6664, 800: #095652, 900: #06433f, contrast: (50: #18232b, 100: #18232b, 200: #18232b, 300: #18232b, 400: #fff, 500: #fff, 600: #fff, 700: #fff, 800: #fff, 900: #fff)));
+$acme-coral: mat.m2-define-palette((50: #fff0ec, 100: #f9d6ca, 200: #f5bbaa, 300: #ef9279, 400: #e97c60, 500: #e86a4a, 600: #d95b41, 700: #c64f38, 800: #ad4332, 900: #91382c, contrast: (50: #18232b, 100: #18232b, 200: #18232b, 300: #18232b, 400: #18232b, 500: #18232b, 600: #fff, 700: #fff, 800: #fff, 900: #fff)));
+$acme-theme: mat.m2-define-light-theme((color: (primary: $acme-teal, accent: $acme-coral), typography: mat.m2-define-typography-config($font-family: 'DM Sans, sans-serif')));
 @include mat.all-component-themes($acme-theme);
 
 :root { --ink: #18232b; --paper: #f4f1eb; --teal: #147d7b; --coral: #e86a4a; --coral-deep: #c64f38; --muted: #71807d; --line: #e4e7e1; }

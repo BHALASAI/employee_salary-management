@@ -3,18 +3,18 @@
 ## Local prerequisites
 
 - Java 17+
-- Maven 3.9+
-- Node.js 18.13+ for Angular 17
+- Gradle 8.10+
+- Node.js 18.19+ for Angular 18
 - npm 9+
 
 ## Start the backend
 
 ```powershell
 cd backend
-mvn spring-boot:run
+gradle bootRun
 ```
 
-The API starts on `http://localhost:8080` and creates `data/salary.db` with 10,000 employees on the first run.
+The API starts on `http://localhost:8080` and creates `salary.db` with 10,000 employees on the first run.
 
 ## Start the frontend
 
