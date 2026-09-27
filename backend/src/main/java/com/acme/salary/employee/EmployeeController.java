@@ -49,13 +49,13 @@ public class EmployeeController {
 
     @PostMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'HR_MANAGER')")
-    public ResponseEntity<EmployeeResponse> create(@Valid @RequestBody EmployeeRequest request) {
+    public ResponseEntity<EmployeeResponse> create(@Valid @RequestBody EmployeeCreateRequest request) {
         return ResponseEntity.status(201).body(employeeService.create(request));
     }
 
     @PutMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'HR_MANAGER')")
-    public EmployeeResponse update(@PathVariable long id, @Valid @RequestBody EmployeeRequest request) {
+    public EmployeeResponse update(@PathVariable long id, @Valid @RequestBody EmployeeCreateRequest request) {
         return employeeService.update(id, request);
     }
 

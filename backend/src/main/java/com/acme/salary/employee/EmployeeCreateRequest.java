@@ -12,8 +12,7 @@ import jakarta.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public record EmployeeRequest(
-        @NotBlank @Size(max = 30) String employeeId,
+public record EmployeeCreateRequest(
         @NotBlank @Size(max = 80) String firstName,
         @NotBlank @Size(max = 80) String lastName,
         @NotBlank @Email @Size(max = 160) String email,

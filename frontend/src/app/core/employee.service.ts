@@ -26,11 +26,11 @@ export class EmployeeService {
   }
 
   create(payload: EmployeePayload): Observable<Employee> {
-    return this.http.post<Employee>(`${this.apiUrl}/employees`, payload);
+    return this.http.post<Employee>(`${this.apiUrl}/employees`, this.withoutEmployeeId(payload));
   }
 
   update(id: number, payload: EmployeePayload): Observable<Employee> {
-    return this.http.put<Employee>(`${this.apiUrl}/employees/${id}`, payload);
+    return this.http.put<Employee>(`${this.apiUrl}/employees/${id}`, this.withoutEmployeeId(payload));
   }
 
   delete(id: number): Observable<void> {
@@ -39,5 +39,11 @@ export class EmployeeService {
 
   summary(): Observable<DashboardSummary> {
     return this.http.get<DashboardSummary>(`${this.apiUrl}/dashboard/summary`);
+  }
+
+  private withoutEmployeeId(payload: EmployeePayload): Omit<EmployeePayload, 'employeeId'> {
+    const writePayload = { ...payload };
+    delete (writePayload as Partial<EmployeePayload>).employeeId;
+    return writePayload;
   }
 }

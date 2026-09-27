@@ -1,0 +1,51 @@
+openapi: 3.0.3
+info:
+  title: ACME Dashboard API
+  version: 1.0.0
+security:
+  - bearerAuth: []
+paths:
+  /api/dashboard/summary:
+    get:
+      summary: Get workforce and compensation summary
+      responses:
+        '200':
+          description: Current organization summary
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/DashboardSummary' }
+        '401': { description: Authentication required }
+components:
+  securitySchemes:
+    bearerAuth: { type: http, scheme: bearer, bearerFormat: JWT }
+  schemas:
+    DashboardSummary:
+      type: object
+      required: [headcount, activeHeadcount, averageBaseSalary, averageBonus, byCurrency, byCountry, byDepartment]
+      properties:
+        headcount: { type: integer, format: int64, minimum: 0 }
+        activeHeadcount: { type: integer, format: int64, minimum: 0 }
+        averageBaseSalary: { type: number, minimum: 0 }
+        averageBonus: { type: number, minimum: 0 }
+        byCurrency:
+          type: array
+          items: { $ref: '#/components/schemas/CurrencyMetric' }
+        byCountry:
+          type: array
+          items: { $ref: '#/components/schemas/CountMetric' }
+        byDepartment:
+          type: array
+          items: { $ref: '#/components/schemas/CountMetric' }
+    CurrencyMetric:
+      type: object
+      required: [currency, employeeCount, totalBaseSalary]
+      properties:
+        currency: { type: string, pattern: '^[A-Z]{3}$' }
+        employeeCount: { type: integer, format: int64, minimum: 0 }
+        totalBaseSalary: { type: number, minimum: 0 }
+    CountMetric:
+      type: object
+      required: [label, employeeCount]
+      properties:
+        label: { type: string }
+        employeeCount: { type: integer, format: int64, minimum: 0 }

@@ -5,7 +5,7 @@ A full-stack assessment solution for an HR manager maintaining salary data for 1
 ## What is included
 
 - Angular 18 + Angular Material responsive HR portal.
-- Spring Boot 3.3 REST API with SQLite, JPA, validation, JWT authentication, and role-based authorization.
+- Spring Boot 3.5 REST API with SQLite, JPA, validation, JWT authentication, and role-based authorization.
 - Deterministic seed runner for 10,000 employees and three demo roles.
 - Search, filters, server-side pagination, create/edit/delete workflows, dashboard metrics, and currency-separated payroll views.
 - Unit tests for backend domain services and frontend HTTP services.
@@ -57,10 +57,19 @@ The free service uses SQLite at `/tmp/salary.db`, which is suitable for evaluati
 
 ## Assessment artifacts
 
+- [Spec-driven feature baseline](specs/README.md)
+- [Project constitution](.specify/memory/constitution.md)
 - [Requirements](docs/requirements.md)
 - [Architecture](docs/architecture.md)
+- [Planning and design notes](docs/planning-design-notes.md)
 - [Trade-offs](docs/tradeoffs.md)
 - [AI-assisted development notes](docs/ai-prompts.md)
 - [Performance considerations](docs/performance.md)
 - [Demo runbook](docs/demo.md)
 - [Render deployment runbook](docs/render-deployment.md)
+
+## Spec-driven workflow
+
+This repository uses GitHub Spec Kit. The living feature contracts are under `specs/`; each includes its specification, implementation plan, research decisions, data model, contract, quickstart, completed task trace, and requirements checklist.
+
+For future behavior changes, run `/speckit-specify`, `/speckit-plan`, `/speckit-tasks`, `/speckit-implement`, and `/speckit-converge` in order. Update the existing feature contract when evolving baseline behavior.

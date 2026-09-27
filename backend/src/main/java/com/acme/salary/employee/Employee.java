@@ -131,6 +131,10 @@ public class Employee {
         return active;
     }
 
+    void assignEmployeeId(String employeeId) {
+        this.employeeId = employeeId;
+    }
+
     public void update(String employeeId, String firstName, String lastName, String email,
                        String department, String jobTitle, String country, String currency,
                        BigDecimal baseSalary, BigDecimal bonus, LocalDate effectiveDate, boolean active) {

@@ -7,6 +7,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.UUID;
+
 @Service
 @Transactional(readOnly = true)
 public class EmployeeService {
@@ -27,28 +29,23 @@ public class EmployeeService {
     }
 
     @Transactional
-    public EmployeeResponse create(EmployeeRequest request) {
-        if (employeeRepository.existsByEmployeeId(request.employeeId())) {
-            throw new DuplicateResourceException("Employee ID already exists");
-        }
+    public EmployeeResponse create(EmployeeCreateRequest request) {
         if (employeeRepository.existsByEmail(request.email())) {
             throw new DuplicateResourceException("Email already exists");
         }
-        return EmployeeResponse.from(employeeRepository.save(toEntity(request)));
+        Employee employee = employeeRepository.saveAndFlush(toEntity(request));
+        employee.assignEmployeeId(formatEmployeeId(employee.getId()));
+        return EmployeeResponse.from(employeeRepository.save(employee));
     }
 
     @Transactional
-    public EmployeeResponse update(long id, EmployeeRequest request) {
+    public EmployeeResponse update(long id, EmployeeCreateRequest request) {
         Employee employee = findEntity(id);
-        if (!employee.getEmployeeId().equals(request.employeeId())
-                && employeeRepository.existsByEmployeeId(request.employeeId())) {
-            throw new DuplicateResourceException("Employee ID already exists");
-        }
         if (!employee.getEmail().equalsIgnoreCase(request.email())
                 && employeeRepository.existsByEmail(request.email())) {
             throw new DuplicateResourceException("Email already exists");
         }
-        employee.update(request.employeeId(), request.firstName(), request.lastName(), request.email(),
+        employee.update(employee.getEmployeeId(), request.firstName(), request.lastName(), request.email(),
                 request.department(), request.jobTitle(), request.country(), request.currency(),
                 request.baseSalary(), request.bonus(), request.effectiveDate(), request.active());
         return EmployeeResponse.from(employeeRepository.save(employee));
@@ -65,10 +62,18 @@ public class EmployeeService {
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not found: " + id));
     }
 
-    private Employee toEntity(EmployeeRequest request) {
-        return new Employee(request.employeeId(), request.firstName(), request.lastName(), request.email(),
+    private Employee toEntity(EmployeeCreateRequest request) {
+        return new Employee("PENDING-" + UUID.randomUUID().toString().substring(0, 20),
+                request.firstName(), request.lastName(), request.email(),
                 request.department(), request.jobTitle(), request.country(), request.currency(),
                 request.baseSalary(), request.bonus(), request.effectiveDate(), request.active());
+    }
+
+    private String formatEmployeeId(long id) {
+        if (id > 99_999) {
+            throw new IllegalStateException("Employee ID capacity exceeded");
+        }
+        return "ACME-%05d".formatted(id);
     }
 
     private String blankAsNull(String value) {
